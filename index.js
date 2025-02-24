@@ -7,7 +7,7 @@ const { log } = require('./services/loggingService');
 const { evaluateJobMatch } = require('./services/jobMatchEvaluator');
 const candidateSummary = require('fs').readFileSync('./candidate_summary.txt', 'utf8');
 
-const useDebugMode = process.env.DEBUG_MODE === "true";
+const useDebugMode = false ;
 
 async function main() {
     log('INFO', 'Starting Job Scraper Workflow...');
@@ -27,7 +27,7 @@ async function main() {
             }
         }
 
-        // Step 3: Filter out duplicates
+      /*  // Step 3: Filter out duplicates
         const sheetData = await readJobsFromSheet();
         const existingJobs = sheetData.slice(1);
         const uniqueJobs = filterUniqueJobs(existingJobs, jobs);
@@ -38,7 +38,7 @@ async function main() {
             const jobAiResponses = await evaluateJobMatch(job, candidateSummary);
             await writeJobToSheet(job, jobAiResponses);
             writtenCount++;
-        }
+        } */
         log("INFO", `${writtenCount} unique jobs successfully written to Google Sheets.`);
 
     } catch (error) {
